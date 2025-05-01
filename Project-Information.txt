@@ -61,8 +61,8 @@ you can use that and omit the external LED/resistor.
 - Select `SendButton` in Hierarchy
 - Scroll down to `Button (Script)` component
 - Under **OnClick()** → Click `+`
-  - Drag `SerialManager` into the object field
-  - From the dropdown → Choose `morsender → SendMorse()`
+  - Drag `Manager` into the object field
+  - From the dropdown → Choose `morsender.cs' → SendMorse()`
 
 
 ### 6.  Build Settings

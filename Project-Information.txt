@@ -1,0 +1,72 @@
+# Latin → Morse Code Converter & Light Signaller
+
+An Arduino & Unity project that reads an English string from the Serial Monitor, converts it to
+Morse code, and “signalls” it by blinking an LED (or any light) in the appropriate
+dot-and-dash pattern.
+
+## Arduino Setup:-
+## 1. Hardware Required
+
+- Arduino Uno (or compatible board)
+- LED (any color)
+- 220 Ω resistor
+- Breadboard & jumper wires
+- USB cable to connect Arduino to PC
+
+## 2. Wiring
+
+1. **LED Anode (+) →** Digital Pin ** 13** on Arduino
+2. **LED Cathode (–) →** One end of 220 Ω resistor
+3. **Other end of resistor →** Arduino **GND**
+
+> Pin 13 already has a built-in LED on most boards;
+you can use that and omit the external LED/resistor.
+
+## 3. Upload morse.ino code on arduino
+# Unity Setup for Morse Code Light Signaller (Arduino + Unity)
+
+## Unity Integration:-
+
+### 1. Create Unity Project
+- Open **Unity Hub**
+- Click **New Project**
+- Select **2D Core** template
+- Name your project: `MorseLightUI`
+- Click **Create**
+
+
+### 2.  Setup UI Components
+- In the **Hierarchy**, right-click → `UI` → `Canvas`
+- Under Canvas:
+  - Right-click → `UI` → `Input Field` → Rename: `InputFieldText`
+  - Right-click → `UI` → `Button` → Rename: `SendButton`
+    - Change Button Text to "Send"
+  - Right-click → `UI` → `Text` → Rename: `StatusText`
+
+
+### 3. Create C# Script
+- In **Assets** folder → Right-click → `Create > Folder` → Name it `Scripts`
+- Inside `Scripts` folder → Right-click → `Create > C# Script` → Name it: `morsender.cs`
+- Paste morsender.cs code onto moresender.cs file
+- Replace `"COM3"` with your actual Arduino COM port.
+
+### 4. Hook Up UI to Script
+- In **Hierarchy**, right-click → `Create Empty` → Rename: `Manager`
+- Drag `morsender.cs` onto `Manager`
+- Select `Manager` → In Inspector:
+  - Assign `InputFieldText` and `StatusText` to the script fields
+
+
+### 5. Connect Button Function
+- Select `SendButton` in Hierarchy
+- Scroll down to `Button (Script)` component
+- Under **OnClick()** → Click `+`
+  - Drag `SerialManager` into the object field
+  - From the dropdown → Choose `morsender → SendMorse()`
+
+
+### 6.  Build Settings
+- Go to **Edit > Project Settings > Player > Other Settings**
+- Set **API Compatibility Level** to **.NET Framework**
+- Save and restart Unity if needed
+
